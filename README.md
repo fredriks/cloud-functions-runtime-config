@@ -13,13 +13,58 @@ $ npm install --save cloud-functions-runtime-config
 ```javascript
 var runtimeConfig = require('cloud-functions-runtime-config');
 
-runtimeConfig.getVariable('dev-config', 'lunch-plans')
-    .then(function(val) {
-         console.log(val);
-    })
-    .catch((err) => {
-         // error handling
-    });
+exports.lunchPlanner = function(req, res) {
+    runtimeConfig.getVariable('dev-config', 'lunch-plans')
+        .then(function(val) {
+             console.log(val);
+        })
+        .catch((err) => {
+             // error handling
+        });
+};
+```
+
+## Basic example
+
+#### Config setup
+
+Create a config resource and store a variable in it.
+```
+$ gcloud beta runtime-config configs create dev-config
+$ gcloud beta runtime-config configs variables \
+    set lunch-plans "lets go for a hamburger!" \
+    --config-name dev-config
+```
+
+#### Cloud function
+
+A basic http function that will read us the variable value.
+```javascript
+var runtimeConfig = require('cloud-functions-runtime-config');
+
+exports.lunchPlanner = (req, res) => {
+    runtimeConfig.getVariable('dev-config', 'lunch-plans')
+        .then((val) => res.status(200).send(val))
+        .catch((err) => res.status(500).send(err));
+};
+```
+
+Deploying the function with an http trigger:
+```
+$ gcloud beta functions deploy lunchPlanner \
+    --trigger-http \
+    --stage-bucket=<YOUR-BUCKET>
+```
+
+Test the function:
+```
+$ curl https://us-central1-$(gcloud config get-value core/project).cloudfunctions.net/lunchPlanner
+```
+
+#### Cleanup
+```
+$ gcloud beta runtime-config configs delete dev-config
+$ gcloud beta functions delete lunchPlanner
 ```
 
 ## License
