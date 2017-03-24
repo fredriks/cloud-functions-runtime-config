@@ -13,7 +13,7 @@ $ npm install --save cloud-functions-runtime-config
 ```javascript
 var runtimeConfig = require('cloud-functions-runtime-config');
 
-runtimeConfig.getVariable("dev-config", "lunch-plans")
+runtimeConfig.getVariable('dev-config', 'lunch-plans')
     .then(function(val) {
          console.log(val);
     })
