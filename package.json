@@ -1,0 +1,34 @@
+{
+  "name": "cloud-functions-runtime-config",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint src",
+    "test": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fredriks/cloud-functions-runtime-config.git"
+  },
+  "keywords": [
+    "Runtime Config",
+    "Cloud Functions",
+    "Google Cloud Platform"
+  ],
+  "files": [
+    "src"
+  ],
+  "author": "Fredrik Simón",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fredriks/cloud-functions-runtime-config/issues"
+  },
+  "homepage": "https://github.com/fredriks/cloud-functions-runtime-config",
+  "dependencies": {
+    "googleapis": "^18.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.18.0",
+    "eslint-config-google": "^0.7.1"
+  }
+}
