@@ -18,7 +18,7 @@ exports.lunchPlanner = function(req, res) {
         .then(function(val) {
              console.log(val);
         })
-        .catch((err) => {
+        .catch(function(err) {
              // error handling
         });
 };
