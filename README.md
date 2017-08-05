@@ -43,9 +43,9 @@ gcloud beta runtime-config configs variables \
     --config-name dev-config
 ```
 
-#### Cloud function
+#### Cloud Function
 
-A basic http function that will read us the variable value.
+A basic HTTP Function that returns the variable value.
 ```javascript
 var runtimeConfig = require('cloud-functions-runtime-config');
 
