@@ -26,6 +26,13 @@ exports.lunchPlanner = function(req, res) {
 
 ## Basic example
 
+#### Enable the RuntimeConfig API
+
+Either using the [API Manager](https://console.cloud.google.com/apis/api/runtimeconfig.googleapis.com/overview) in Cloud Console or using gcloud:
+```shell
+gcloud service-management enable runtimeconfig.googleapis.com
+```
+
 #### Config setup
 
 Create a config resource and store a variable in it.
