@@ -5,8 +5,8 @@ This is a wrapper around Google API Client to read Runtime Config variables in C
 **Note: Runtime Config is currently in beta so things might break!**
 
 ## Installation
-```
-$ npm install --save cloud-functions-runtime-config
+```shell
+npm install --save cloud-functions-runtime-config
 ```
 
 ## Usage
@@ -29,9 +29,9 @@ exports.lunchPlanner = function(req, res) {
 #### Config setup
 
 Create a config resource and store a variable in it.
-```
-$ gcloud beta runtime-config configs create dev-config
-$ gcloud beta runtime-config configs variables \
+```shell
+gcloud beta runtime-config configs create dev-config
+gcloud beta runtime-config configs variables \
     set lunch-plans "lets go for a hamburger!" \
     --config-name dev-config
 ```
@@ -49,22 +49,22 @@ exports.lunchPlanner = (req, res) => {
 };
 ```
 
-Deploying the function with an http trigger:
-```
-$ gcloud beta functions deploy lunchPlanner \
+Deploying the Function with an HTTP trigger:
+```shell
+gcloud beta functions deploy lunchPlanner \
     --trigger-http \
     --stage-bucket=<YOUR-BUCKET>
 ```
 
-Test the function:
-```
-$ curl https://us-central1-$(gcloud config get-value core/project).cloudfunctions.net/lunchPlanner
+Test the Function:
+```shell
+curl https://us-central1-$(gcloud config get-value core/project).cloudfunctions.net/lunchPlanner
 ```
 
 #### Cleanup
-```
-$ gcloud beta runtime-config configs delete dev-config
-$ gcloud beta functions delete lunchPlanner
+```shell
+gcloud beta runtime-config configs delete dev-config
+gcloud beta functions delete lunchPlanner
 ```
 
 ## License
