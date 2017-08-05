@@ -11,15 +11,18 @@ npm install --save cloud-functions-runtime-config
 
 ## Usage
 ```javascript
-var runtimeConfig = require('cloud-functions-runtime-config');
+const runtimeConfig = require('cloud-functions-runtime-config');
+const lunchPlans = runtimeConfig.getVariable('dev-config', 'lunch-plans');
 
-exports.lunchPlanner = function(req, res) {
-    runtimeConfig.getVariable('dev-config', 'lunch-plans')
-        .then(function(val) {
-             console.log(val);
+exports.lunchPlanner = (req, res) => {
+    return lunchPlans
+        .then((val) => {
+            console.log(val);
+            res.status(200).send(val);
         })
-        .catch(function(err) {
-             // error handling
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send(err);
         });
 };
 ```
@@ -47,10 +50,11 @@ gcloud beta runtime-config configs variables \
 
 A basic HTTP Function that returns the variable value.
 ```javascript
-var runtimeConfig = require('cloud-functions-runtime-config');
+const runtimeConfig = require('cloud-functions-runtime-config');
+const lunchPlans = runtimeConfig.getVariable('dev-config', 'lunch-plans');
 
 exports.lunchPlanner = (req, res) => {
-    runtimeConfig.getVariable('dev-config', 'lunch-plans')
+    return lunchPlans
         .then((val) => res.status(200).send(val))
         .catch((err) => res.status(500).send(err));
 };
