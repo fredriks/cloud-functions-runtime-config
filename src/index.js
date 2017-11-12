@@ -31,7 +31,13 @@ function getVariable(configName, variableName) {
                     return;
                 }
 
-                resolve(Buffer.from(variable.value, 'base64').toString());
+                if (typeof variable.text !== 'undefined') {
+                    resolve(variable.text);
+                } else if (typeof variable.value !== 'undefined') {
+                    resolve(Buffer.from(variable.value, 'base64').toString());
+                } else {
+                    reject(new Error('Property text or value not defined'));
+                }
             });
         });
     });
