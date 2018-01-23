@@ -78,5 +78,19 @@ gcloud beta runtime-config configs delete dev-config
 gcloud beta functions delete lunchPlanner
 ```
 
+## API
+
+### runtimeConfig.getVariable(config, variable)
+
+Returns a `Promise` that is either resolved to the value read from Runtime Config or rejected if the variable could not be read.
+
+##### config
+
+Type: `string`
+
+##### variable
+
+Type: `string`
+
 ## License
 [The MIT License (MIT)](/LICENSE)
