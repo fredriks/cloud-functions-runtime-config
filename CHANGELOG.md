@@ -1,3 +1,6 @@
+## 0.3.0
+Added `getVariables` method - A convenience method to fetch multiple variables.
+
 ## 0.2.0
 Add support for text var (by @eddiezane)
 

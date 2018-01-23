@@ -2,8 +2,24 @@ const google = require('googleapis');
 const runtimeConfig = google.runtimeconfig('v1beta1');
 
 module.exports = {
+    getVariables: getVariables,
     getVariable: getVariable,
 };
+
+/**
+ * runtimeConfig.getVariables
+ *
+ * @desc Reads a list of runtime config values
+ *
+ * @param {string} configName The config name of the variables to return
+ * @param {Array} variableNames The list of variable names to read
+ * @return {Promise} Promise that resolves an array of the variable values
+ */
+function getVariables(configName, variableNames) {
+    return Promise.all(variableNames.map(function(variableName) {
+        return getVariable(configName, variableName);
+    }));
+}
 
 /**
  * runtimeConfig.getVariable

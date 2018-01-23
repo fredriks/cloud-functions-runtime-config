@@ -92,5 +92,18 @@ Type: `string`
 
 Type: `string`
 
+### runtimeConfig.getVariables(config, variables)
+
+Returns a `Promise` that is either resolved to an `Array` of values or rejected if _any_ of the variables could not be read.
+The values are returned in the same order as the variableNames.
+
+##### config
+
+Type: `string`
+
+##### variables
+
+Type: `Array<string>`
+
 ## License
 [The MIT License (MIT)](/LICENSE)
