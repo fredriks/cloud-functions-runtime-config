@@ -1,6 +1,6 @@
 {
   "name": "cloud-functions-runtime-config",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint src",
@@ -25,10 +25,10 @@
   },
   "homepage": "https://github.com/fredriks/cloud-functions-runtime-config",
   "dependencies": {
-    "googleapis": "^18.0.0"
+    "googleapis": "^27.0.0"
   },
   "devDependencies": {
-    "eslint": "^3.18.0",
-    "eslint-config-google": "^0.7.1"
+    "eslint": "^4.18.2",
+    "eslint-config-google": "^0.9.1"
   }
 }

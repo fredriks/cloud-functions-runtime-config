@@ -1,4 +1,4 @@
-const google = require('googleapis');
+const {google} = require('googleapis');
 const runtimeConfig = google.runtimeconfig('v1beta1');
 
 module.exports = {
@@ -41,12 +41,13 @@ function getVariable(configName, variableName) {
             runtimeConfig.projects.configs.variables.get({
                 auth: authClient,
                 name: fullyQualifiedName,
-            }, function(err, variable) {
+            }, function(err, res) {
                 if (err) {
                     reject(err);
                     return;
                 }
 
+                const variable = res.data;
                 if (typeof variable.text !== 'undefined') {
                     resolve(variable.text);
                 } else if (typeof variable.value !== 'undefined') {

@@ -1,3 +1,6 @@
+## 0.4.0
+Upgraded package dependencies.
+
 ## 0.3.0
 Added `getVariables` method - A convenience method to fetch multiple variables.
 
