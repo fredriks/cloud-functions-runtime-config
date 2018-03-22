@@ -1,9 +1,12 @@
 const {google} = require('googleapis');
 const runtimeConfig = google.runtimeconfig('v1beta1');
 
+var keyFile;
+
 module.exports = {
     getVariables: getVariables,
     getVariable: getVariable,
+    setKeyFile: setKeyFile,
 };
 
 /**
@@ -60,14 +63,22 @@ function getVariable(configName, variableName) {
     });
 }
 
+function setKeyFile(path) {
+    keyFile = path;
+}
+
 /**
  * auth
  *
- * @desc Authenticates using default credentials
+ * @desc Authenticates using default credentials, or keyFile if supplied using setKeyFile
  *
  * @return {Promise} Promise that resolves an authClient
  */
 function auth() {
+    if(keyFile) {
+        return authFromKeyFile();
+    }
+
     return new Promise(function(resolve, reject) {
         google.auth.getApplicationDefault(function(err, authClient, projectId) {
             if (err) {
@@ -88,4 +99,25 @@ function auth() {
             resolve(authClient);
         });
     });
+}
+
+function authFromKeyFile() {
+    const key = require(keyFile);
+    const jwtClient = new google.auth.JWT(
+        key.client_email,
+        null,
+        key.private_key,
+        ['https://www.googleapis.com/auth/cloud-platform',
+            'https://www.googleapis.com/auth/cloudruntimeconfig'], // an array of auth scopes
+        null
+    );
+
+    jwtClient.authorize(function (err, tokens) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+    });
+
+    return Promise.resolve(jwtClient);
 }
