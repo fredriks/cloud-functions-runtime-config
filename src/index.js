@@ -63,6 +63,13 @@ function getVariable(configName, variableName) {
     });
 }
 
+/**
+ * setKeyFile
+ *
+ * @desc set the path to a json keyFile, if you don't want to use the provided default credentials
+ *
+ * @return {Promise} Promise that resolves an authClient
+ */
 function setKeyFile(path) {
     keyFile = path;
 }
@@ -70,7 +77,7 @@ function setKeyFile(path) {
 /**
  * auth
  *
- * @desc Authenticates using default credentials, or keyFile if supplied using setKeyFile
+ * @desc Authenticates using default credentials, or keyFile if provided using setKeyFile()
  *
  * @return {Promise} Promise that resolves an authClient
  */
