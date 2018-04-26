@@ -33,7 +33,7 @@ exports.lunchPlanner = (req, res) => {
 
 Either using the [API Manager](https://console.cloud.google.com/apis/api/runtimeconfig.googleapis.com/overview) in Cloud Console or using gcloud:
 ```shell
-gcloud service-management enable runtimeconfig.googleapis.com
+gcloud services enable runtimeconfig.googleapis.com
 ```
 
 #### Config setup
