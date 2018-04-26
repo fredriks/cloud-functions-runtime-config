@@ -33,7 +33,12 @@ function getVariables(configName, variableNames) {
 function getVariable(configName, variableName) {
     return new Promise(function(resolve, reject) {
         auth().then(function(authClient) {
-            const projectId = process.env.GCLOUD_PROJECT;
+            const projectId = process.env.GOOGLE_CLOUD_PROJECT || process.env.GCLOUD_PROJECT;
+            
+            if (projectId === undefined) {
+                throw new Error('The environment variable GOOGLE_CLOUD_PROJECT or GCLOUD_PROJECT is missing');    
+            }
+            
             const fullyQualifiedName = 'projects/' + projectId
                     + '/configs/' + configName
                     + '/variables/' + variableName;
