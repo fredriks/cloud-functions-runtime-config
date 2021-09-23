@@ -1,5 +1,11 @@
 # Cloud Functions Runtime Config
 
+**DEPRECATED**
+
+There are better ways of doing this now, such as [GCP Secret Manager](https://cloud.google.com/functions/docs/configuring/secrets) or [Firebase env config](https://firebase.google.com/docs/functions/config-env).
+
+---
+
 This is a wrapper around Google API Client to read Runtime Config variables in Cloud Functions.
 
 **Note: Runtime Config is currently in beta so things might break!**
